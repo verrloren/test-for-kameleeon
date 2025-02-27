@@ -1,50 +1,23 @@
-# React + TypeScript + Vite
+Запуск проекта
+bun i
+bun run dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Фотографии с запущеного проекта
+Фильтры: ![image](https://github.com/user-attachments/assets/c7fc214f-24b2-4b5a-bc73-73a9ee785a66)
+Поиск: ![image](https://github.com/user-attachments/assets/43d55ad8-bd32-449c-af33-15c5f36507de)
+Динамичный роутинг /finalize/{testId}: ![image](https://github.com/user-attachments/assets/9418a5b8-a319-4368-b4d7-6a7163ef023a)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+Подробности проекта
+Архитектура
+Проект следует архитектуре Feature-Sliced Design (FSD), разделяя обязанности по доменам (например, features/table/api/hooks/use-get-sites.tsx) и UI-компонентам (например, widgets/table/ui/table.tsx, widgets/header/ui/header.tsx).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Стилизация
+Для стилизации компонентов используются SCSS-модули. Например, стиль компонента загрузчика определён в shared/ui/loader.module.scss, а стили компонента таблицы — в widgets/table/ui/table.module.scss.
 
-- Configure the top-level `parserOptions` property like this:
+Интеграция с API
+API-запросы выполняются с использованием кастомного jsonApiInstance, определённого в shared/api/api-instance.ts. Функциональность таблицы использует API-хуки из папки features/table/api/hooks.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Роутинг
+Для маршрутизации используется React Router. Маршруты определены в app/App.tsx. Страницы собраны в pages.
